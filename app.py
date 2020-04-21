@@ -25,7 +25,7 @@ def getProducts():
 
 
 def convertProductsListToDictionary(list):
-    dictinory = {}
+    dictinory = []
     for number in range(len(list)):
         productID = number + 1
 
@@ -35,7 +35,7 @@ def convertProductsListToDictionary(list):
             "url": "/catalog/product_" + str(productID)
         }
 
-        dictinory.update({'product_' + str(productID): product})
+        dictinory.append(product)
         pass
 
     return dictinory
