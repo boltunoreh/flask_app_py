@@ -21,7 +21,7 @@ def catalogOneAction(name):
 
 
 def getProducts():
-    return ['COVID-19', 'H1N1', 'SARS', 'PLUGUE']
+    return ['COVID-19', 'H1N1', 'SARS', 'PLUGUE', 'H5N1', 'HIV']
 
 
 def convertProductsListToDictionaryToList(list):

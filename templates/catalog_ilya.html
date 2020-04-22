@@ -16,7 +16,7 @@
 </div>
 <div id="back-link"><a href="javascript:history.back()">Назад</a></div>
 <div id="content">
-    <div id="product-count">{{products.number}} вируса:</div>
+    <div id="product-count">{{products|count}} вируса:</div>
     <div id="products">
     <ul>
     {% for product in products %}
