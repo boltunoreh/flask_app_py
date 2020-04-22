@@ -10,7 +10,7 @@ def mainAction():
 
 @app.route('/catalog/')
 def catalogAction():
-    productsDic = convertProductsListToDictionary(getProducts())
+    productsDic = convertProductsListToDictionaryToList(getProducts())
     return render_template('catalog_ilya.html', products=productsDic)
 
 
@@ -24,7 +24,7 @@ def getProducts():
     return ['COVID-19', 'H1N1', 'SARS', 'PLUGUE']
 
 
-def convertProductsListToDictionary(list):
+def convertProductsListToDictionaryToList(list):
     dictinory = []
     for number in range(len(list)):
         productID = number + 1
@@ -36,6 +36,23 @@ def convertProductsListToDictionary(list):
         }
 
         dictinory.append(product)
+        #dictinory.update({'product_' + str(productID): product})
+        pass
+    return dictinory
+
+def convertProductsListToDictionary(list):
+    dictinory = {}
+    for number in range(len(list)):
+        productID = number + 1
+
+        product = {
+            "id": productID,
+            "name": list[number],
+            "url": "/catalog/product_" + str(productID)
+            }
+
+        #dictinory.append(product)
+        dictinory.update({'product_' + str(productID): product})
         pass
 
     return dictinory
