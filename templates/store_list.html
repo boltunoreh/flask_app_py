@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Вирусстор - {{product.name}}</title>
+    <title>Экскурстор - каталог</title>
 </head>
 <body>
 <div id="top-menu">
@@ -16,12 +16,14 @@
 </div>
 <div id="back-link"><a href="javascript:history.back()">Назад</a></div>
 <div id="content">
-    <div id="product">
-        <div class="product-id">{{product.id}}</div>
-        <div class="product-name">{{product.name}}</div>
-        <div class="product-price">{{product.price}}</div>
-        <div class="product-description">{{product.description}}</div>
-        <div class="product-available-count">10 шт <span style="color:green;">в наличии</span></div>
+    <div id="store-count">{{stores|count}} магазинов:</div>
+    <div id="stores">
+    <ul>
+    {% for store in stores %}
+    <li><a href="{{ store.url }}">{{ store.name }}</a></li>
+    {% endfor %}
+    </ul>
+
     </div>
 </div>
 </body>
