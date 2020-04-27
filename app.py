@@ -5,8 +5,8 @@ app = Flask(__name__)
 
 class Product:
 
-    def __init__(self, id, slug, name, price, description, url):
-        self.id = id
+    def __init__(self, item_id, slug, name, price, description, url):
+        self.id = item_id
         self.slug = slug
         self.name = name
         self.price = price
@@ -20,9 +20,9 @@ def get_product_objects():
     result = []
 
     for product_data in products_data:
-        product_object = Product(product_data['id'], product_data['slug'], product_data['name'],
-                                 product_data['price'], product_data['description'])
-        result = [product_object]
+        product_object = Product(product_data['item_id'], product_data['slug'], product_data['name'],
+                                 product_data['price'], product_data['url'], product_data['description'])
+        result.append(product_object)
 
     return result
 
@@ -104,19 +104,19 @@ def get_store_by_slug(slug):
 def get_stores():
     return [
         {
-            "id": 1,
+            "store_id": 1,
             "slug": 'Karavannaya',
             "name": 'Основной офис',
             "address": 'Караванная д.1'
         },
         {
-            "id": 2,
+            "store_id": 2,
             "slug": 'Nevsky',
             "name": 'Дополнительный офис - 1',
             "address": 'Невский д.150'
         },
         {
-            "id": 3,
+            "store_id": 3,
             "slug": 'Kaprskoe',
             "name": 'Дополнительный офис - 2',
             "address": 'Деревня Капрское'
@@ -127,34 +127,40 @@ def get_stores():
 def get_products():
     return [
         {
-            "id": 1,
+            "item_id": 1,
             "slug": 'hermitage',
             "name": 'Экскурсия в Эрмитаж',
             "price": 1500,
-            "description": 'Обзорная экскурсия по Эрмитажу, продолжительность 3 часа'
+            "description": 'Обзорная экскурсия по Эрмитажу, продолжительность 3 часа',
+            "url": ''
         },
-        {"id": 2,
+        {
+         "item_id": 2,
          "slug": 'citytour',
          "name": 'Обзорная экскурсия по городу',
          "price": 2000,
-         "description": 'Автобусная экскурсия по городу в сопровождении гида. Продолжительность 4 часа.'
+         "description": 'Автобусная экскурсия по городу в сопровождении гида. Продолжительность 4 часа.',
+         "url": '',
          },
-        {"id": 3,
+        {"item_id": 3,
          "slug": 'pushkin',
          "name": 'Пушкин и Царское село',
          "price": 2500,
-         "description": 'Экскурсия в Царское Село. Посещение Екатерининского дворца, Екатерининского парка и Янтарной комнаты. Продолжительность 5 часов.'
+         "description": 'Экскурсия в Царское Село. Посещение Екатерининского дворца, Екатерининского парка и Янтарной комнаты. Продолжительность 5 часов.',
+         "url": '',
          },
-        {"id": 4,
+        {"item_id": 4,
          "slug": 'peterhof',
          "name": 'Петергоф',
          "price": 4000,
-         "description": 'Экскурсия в Петергов. Посещение Большого дворца, Нижнего и Верхнего парков, Телеграфа. Продолжительность 5 часов.'
+         "description": 'Экскурсия в Петергов. Посещение Большого дворца, Нижнего и Верхнего парков, Телеграфа. Продолжительность 5 часов.',
+         "url": ''
          },
-        {"id": 5,
+        {"item_id": 5,
          "name": 'Реки и Каналы',
          "slug": 'canales',
          "price": 500,
-         "description": 'Обзорная экскурсия по каналам, с выходов в Неву, продолжительность 1 час'
+         "description": 'Обзорная экскурсия по каналам, с выходов в Неву, продолжительность 1 час',
+         "url": ''
          },
     ]
