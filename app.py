@@ -14,6 +14,24 @@ class Product:
         self.url = url
 
 
+class Store:
+    def __init__(self, store_id, slug, name, address):
+        self.store_id = store_id
+        self.slug = slug
+        self.name = name
+        self.address = address
+
+
+def get_store_objects():
+    stores_data = get_stores()
+    result = []
+
+    for store_data in stores_data:
+        store_object = Store(store_data['store_id'], store_data['slug'], store_data['name'], store_data['address'])
+        result.append(store_object)
+
+    return result
+
 
 def get_product_objects():
     products_data = get_products()
@@ -53,11 +71,11 @@ def catalog_one_view(slug):
 
 
 def get_product_by_slug(slug):
-    products = get_products()
+    products = get_product_objects()
     result = {}
 
     for product in products:
-        if slug == product['slug']:
+        if slug == product.slug:
             result = product
             break
 
@@ -71,10 +89,10 @@ def error_404_view():
 
 @app.route('/stores/')
 def stores_view():
-    stores = get_stores()
+    stores = get_store_objects()
 
-    for store in stores:
-        store['url'] = url_for('stores_one_view', slug=store['slug'])
+    for item in stores:
+        item.url = url_for('stores_one_view', slug=item.slug)
 
     return render_template('store_list.html', stores=stores)
 
@@ -90,11 +108,11 @@ def stores_one_view(slug):
 
 
 def get_store_by_slug(slug):
-    stores = get_stores()
+    stores = get_store_objects()
     result = {}
 
     for store in stores:
-        if slug == store['slug']:
+        if slug == store.slug:
             result = store
             break
 
